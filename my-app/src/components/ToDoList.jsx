@@ -10,6 +10,7 @@ export default function ToDoList(props) {
             todo={todo} 
             key={todo.id} 
             index={index} 
+            onChange={props.onToggle}
             />
            )
           })} 
