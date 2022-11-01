@@ -1,5 +1,6 @@
 import React  from "react";
 import ToDoList from "./components/ToDoList";
+import Context from "./components/context";
 
 
 function App() {
@@ -20,11 +21,18 @@ function App() {
     )
   }
 
+  function removeTodo(id){
+    setTodos(
+      todos.filter(todo => todo.id !== id)
+    )
+  }
   return (
-    <div>
-      <h1>Список дел</h1>
-      <ToDoList todos={todos} onToggle={toggleTodo}/>
-    </div>
+    <Context.Provider value={{removeTodo}}>
+      <div>
+        <h1>Список дел</h1>   
+          {todos.length ? <ToDoList todos={todos} onToggle={toggleTodo}/> : <p>No todos</p>}                
+      </div>
+    </Context.Provider>
 
   );
 }
